@@ -49,7 +49,7 @@ bigint bigint::operator+(const bigint& src)
         int d;
         char nb;
         
-        if (j != -1)
+        if (j > -1)
             c = a + b;
         else
             c = a;
@@ -64,7 +64,7 @@ bigint bigint::operator+(const bigint& src)
             d = c % 10;
             nb = '0' + d;
             result.insert(0, 1, nb);
-            if (i == 0 && j == 0)
+            if (i == 0)
                 result.insert(0, 1, '1');
         }
         else
@@ -76,6 +76,26 @@ bigint bigint::operator+(const bigint& src)
     }
     copy._value = result;
     return copy;
+}
+
+bigint& bigint::operator+=(const bigint& src)
+{
+    *this = *this + src;
+    return *this;
+}
+
+bigint bigint::operator++(void)
+{
+    *this += bigint(1);
+    return *this;
+}
+
+bigint bigint::operator++(int)
+{
+    bigint  tmp = *this;
+
+    *this += bigint(1);
+    return tmp;
 }
 
 std::ostream&   operator<<(std::ostream& os, const bigint& src)

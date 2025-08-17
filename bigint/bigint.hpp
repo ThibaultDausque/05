@@ -21,8 +21,8 @@ class bigint
 
         bigint operator+(const bigint& src);
         bigint& operator+=(const bigint& src);
-        bigint& operator++(void);
-        bigint& operator++(int);
+        bigint operator++(void);
+        bigint operator++(int);
 
 };
 
