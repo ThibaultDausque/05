@@ -45,28 +45,34 @@ bigint bigint::operator+(const bigint& src)
     {
         int a = value1[i] - '0';
         int b = value2[j] - '0';
-        int c;
+        int c = 0;
         int d;
         char nb;
+        
+        if (j != -1)
+            c = a + b;
+        else
+            c = a;
         if (flag == 1)
         {
-            c = a + b + 1;
+            c++;
             flag = 0;
         }
-        else
-            c = a + b;
         if (c >= 10)
         {
             flag = 1;
             d = c % 10;
-        }
-        if (j != 0)
-            j--;
-        if (flag == 0)
-            nb = '0' + c;
-        else
             nb = '0' + d;
-        result.insert(0, 1, nb);
+            result.insert(0, 1, nb);
+            if (i == 0 && j == 0)
+                result.insert(0, 1, '1');
+        }
+        else
+        {
+            nb = '0' + c;
+            result.insert(0, 1, nb);
+        }
+        j--;
     }
     copy._value = result;
     return copy;

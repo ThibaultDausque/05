@@ -50,8 +50,8 @@
 
 int main(void)
 {
-    bigint  a(42);
-    bigint  b(60);
+    bigint  a(58);
+    bigint  b(448);
 
     std::cout << "a + b = " << a + b << std::endl;
     return 0;
