@@ -50,12 +50,16 @@
 
 int main(void)
 {
-    bigint  a(1);
-    bigint  b(449);
+		bigint	a(42);
+		bigint			b(21), c, d(1337), e(d);
 
     std::cout << "a + b = " << a + b << std::endl;
-    std::cout << b << std::endl;
-    std::cout << "++b = " << ++b << std::endl;
-    std::cout << "b++ = " << b++ << std::endl;
+	std::cout << a << std::endl;
+	std::cout << b << std::endl;
+	std::cout << c << std::endl;
+	std::cout << d << std::endl;
+    std::cout << e << std::endl;
+    // std::cout << "++b = " << ++b << std::endl;
+    // std::cout << "b++ = " << b++ << std::endl;
     return 0;
 }

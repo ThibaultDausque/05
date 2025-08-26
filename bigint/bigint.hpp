@@ -2,8 +2,9 @@
 # define BIGINT_HPP
 
 # include <iostream>
-# include <string>
+# include <ostream>
 # include <sstream>
+# include <string>
 
 class bigint
 {
@@ -12,20 +13,17 @@ class bigint
     
     public:
         bigint();
-        bigint(const bigint &cpy);
-        bigint& operator=(const bigint &src);
-        bigint(const int nb);
+        bigint(const bigint& cpy);
         ~bigint();
+        bigint(int nb);
+        bigint& operator=(const bigint& src);
 
-        const std::string&   getValue(void) const;
+        std::string    getValue(void) const;
 
-        bigint operator+(const bigint& src);
+        std::string operator+(const bigint& src);
         bigint& operator+=(const bigint& src);
-        bigint operator++(void);
-        bigint operator++(int);
-
 };
 
-std::ostream&    operator<<(std::ostream& os, const bigint& src);
+std::ostream&   operator<<(std::ostream& os, const bigint& src);
 
 #endif
