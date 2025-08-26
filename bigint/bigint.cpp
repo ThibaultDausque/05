@@ -43,7 +43,7 @@ std::string bigint::operator+(const bigint& src)
         swap(val1, val2);
     j = val2.size() - 1;
     flag = 0;
-    for (size_t i = val1.size() - 1; i > 0; i--)
+    for (int i = val1.size() - 1; i >= 0; i--)
     {
         int a = val1[i] - '0';
         int b = val2[j] - '0';
