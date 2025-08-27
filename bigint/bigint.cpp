@@ -25,13 +25,11 @@ bigint::bigint(int nb)
 bigint& bigint::operator=(const bigint& src)
 {
     if (this != &src)
-    {
-        _value = src._value;
-    }
+        this->_value = src._value;
     return *this;
 }
 
-std::string bigint::operator+(const bigint& src)
+bigint bigint::operator+(const bigint& src) const
 {
     std::string val1 = _value;
     std::string val2 = src._value;
@@ -47,14 +45,18 @@ std::string bigint::operator+(const bigint& src)
     {
         int a = val1[i] - '0';
         int b = val2[j] - '0';
-        if (j >= 0)
-            j--;
+
+        j--;
         if (flag == 1)
         {
             a++;
             flag = 1;
         }
-        int c = a + b;
+        int c = 0;
+        if (j > 0)
+            c = a + b;
+        else
+            c += a;
         if (c > 9)
         {
             c %= 10;
@@ -62,7 +64,30 @@ std::string bigint::operator+(const bigint& src)
         }
         result.insert(0, 1, '0' + c);
     }
-    return result;
+    bigint  cpy(*this);
+    cpy._value = result;
+    return cpy;
+}
+
+bigint bigint::operator+=(const bigint& src)
+{
+    *this = *this + src;
+    return *this;
+}
+
+bigint&  bigint::operator++(void)
+{
+    bigint one(1);
+    *this += one;
+    return *this;
+}
+
+bigint  bigint::operator++(int)
+{
+    bigint  cpy(*this);
+    bigint  one(1);
+    *this = *this + one;
+    return cpy;
 }
 
 std::string    bigint::getValue(void) const

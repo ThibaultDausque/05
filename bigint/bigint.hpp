@@ -20,8 +20,10 @@ class bigint
 
         std::string    getValue(void) const;
 
-        std::string operator+(const bigint& src);
-        bigint& operator+=(const bigint& src);
+        bigint operator+(const bigint& src) const;
+        bigint operator+=(const bigint& src);
+        bigint& operator++(void);
+        bigint operator++(int);
 };
 
 std::ostream&   operator<<(std::ostream& os, const bigint& src);
