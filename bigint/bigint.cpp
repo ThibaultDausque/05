@@ -34,7 +34,7 @@ bigint bigint::operator+(const bigint& src) const
     std::string val1 = _value;
     std::string val2 = src._value;
     std::string result;
-    size_t      j;
+    int     j;
     int     flag;
 
     if (val1.size() < val2.size())
@@ -46,14 +46,13 @@ bigint bigint::operator+(const bigint& src) const
         int a = val1[i] - '0';
         int b = val2[j] - '0';
 
-        j--;
         if (flag == 1)
         {
             a++;
             flag = 1;
         }
         int c = 0;
-        if (j > 0)
+        if (j >= 0)
             c = a + b;
         else
             c += a;
@@ -63,6 +62,7 @@ bigint bigint::operator+(const bigint& src) const
             flag = 1;
         }
         result.insert(0, 1, '0' + c);
+        j--;
     }
     bigint  cpy(*this);
     cpy._value = result;
@@ -86,7 +86,7 @@ bigint  bigint::operator++(int)
 {
     bigint  cpy(*this);
     bigint  one(1);
-    *this = *this + one;
+    *this += one;
     return cpy;
 }
 
