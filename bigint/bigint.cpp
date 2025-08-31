@@ -2,12 +2,12 @@
 
 bigint::bigint()
 {
-    _value = "0";
+	_value = "0";
 }
 
-bigint::bigint(const bigint& src)
+bigint::bigint(const bigint& cpy)
 {
-    *this = src;
+	*this = cpy;
 }
 
 bigint::~bigint()
@@ -15,63 +15,87 @@ bigint::~bigint()
 
 }
 
+bigint&	bigint::operator=(const bigint&	src)
+{
+	if (this != &src)
+		this->_value = src._value;
+	return *this;
+}
+
 bigint::bigint(int nb)
 {
-    std::ostringstream oss;
-    oss << nb;
-    _value = oss.str();
+	std::ostringstream	os;
+
+	os << nb;
+	_value = os.str();
 }
 
-bigint& bigint::operator=(const bigint& src)
+std::string	bigint::getValue() const
 {
-    if (this != &src)
-    {
-        _value = src._value;
-    }
-    return *this;
+	return _value;
 }
 
-std::string bigint::operator+(const bigint& src)
+bigint	bigint::operator+(const bigint& src) const
 {
-    std::string val1 = _value;
-    std::string val2 = src._value;
-    std::string result;
-    size_t      j;
-    int     flag;
+	std::string	val1 = this->_value;
+	std::string	val2 = src._value;
+	std::string	result;
+	bigint	cpy(*this);
+	int		j;
+	int		flag = 0;
 
-    if (val1.size() < val2.size())
-        swap(val1, val2);
-    j = val2.size() - 1;
-    flag = 0;
-    for (int i = val1.size() - 1; i >= 0; i--)
-    {
-        int a = val1[i] - '0';
-        int b = val2[j] - '0';
-        if (j >= 0)
-            j--;
-        if (flag == 1)
-        {
-            a++;
-            flag = 1;
-        }
-        int c = a + b;
-        if (c > 9)
-        {
-            c %= 10;
-            flag = 1;
-        }
-        result.insert(0, 1, '0' + c);
-    }
-    return result;
+	if (val1.size() < val2.size())
+		std::swap(val1, val2);
+
+	j = val2.size() - 1;
+	for (int i = val1.size() - 1; i >= 0; i--)
+	{
+		int		a = val1[i] - '0';
+		int		b = val2[j] - '0';
+		int		c = 0;
+
+		c = a + b;
+		if (flag == 1)
+		{
+			c++;
+			flag = 0;
+		}
+		if (c >= 10)
+		{
+			c %= 10;
+			flag = 1;
+		}
+		result.insert(0, 1, c + '0');
+		if (j > 0)
+			j--;
+	}
+	cpy._value = result;
+	return cpy;
 }
 
-std::string    bigint::getValue(void) const
+bigint	bigint::operator+=(const bigint& src)
 {
-    return _value;
+	*this = *this + src;
+	return *this;
 }
 
-std::ostream&   operator<<(std::ostream& os, const bigint& src)
+bigint	bigint::operator++(int)
 {
-    os << src.getValue();
-    return os;
+	bigint	cpy(*this);
+
+	cpy += 1;
+	return cpy;
 }
+
+bigint&	bigint::operator++(void)
+{
+	*this += 1;
+	return *this;
+}
+
+std::ostream&	operator<<(std::ostream& os, const bigint& src)
+{
+	os << src.getValue();
+	return os;
+}
+
