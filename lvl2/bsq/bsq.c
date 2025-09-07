@@ -7,32 +7,48 @@ void    ftread_map(char *av)
     FILE        *stream;
     char        *line = NULL;
     int         i;
-    t_map       map;
+    int         j;
+    t_map       *map;
     
-    (void) map;
+    map = (t_map *)malloc(sizeof(t_map));
+    if (!map)
+        return ;
     i = 0;
+    j = 0;
     stream = fopen(av, "r");
     if (stream == NULL)
-    {
         return ;
-    }
     while ((nread = getline(&line, &len, stream)) != -1)
     {
-        printf("--> %s", line);
         if (i == 0)
         {
-            printf("nb of lines: %s\n", nb_of_line(line));
+            if (!nb_of_line(line, map))
+                return ;
+            printf("nb of lines: %s\n", nb_of_line(line, map));
+            if (!parse_inf(line, map))
+                return ;
+            map->tab = (char **)malloc((map->line + 1) * sizeof(char *));
+            if (!map->tab)
+            {
+                printf("tab** malloc error\n");
+                return ;
+            }
         }
-        // else
-        //     detect_square(line);
+        else
+        {
+            if (j < map->line)
+                map->tab[j] = ft_strcpy(line);
+            j++;
+        }
         i++;
     }
-    
+    map->tab[j] = NULL;
+    detect_square(map);
     fclose(stream);
     return ;
 }
 
-char*    nb_of_line(char *line)
+char*    nb_of_line(char *line, t_map *map)
 {
     int     i;
 
@@ -41,32 +57,86 @@ char*    nb_of_line(char *line)
     {
         if (line[i] >= '0' && line[i] <= '9')
         {
-            int     len = 0;
-            char    *tmp = line;
+            int     len = i;
             char    *result;
-            while (tmp[i] && tmp[i] >= '0' && tmp[i] <= '9')
-            {
+            while (line[len] && line[len] >= '0' && line[len] <= '9')
                 len++;
-                i++;
-            }
-            if (tmp[i] == '\0')
+            if (line[i] == '\0')
                 return NULL;
             result = ft_strcat(line, i, len);
+            map->line = ft_atoi(result);
             return result;
         }
+        i++;
     }
+    printf("Error: nb of lines");
     return NULL;
 }
 
-// void    detect_square(char *line)
-// {
-//     int     i;
-//     int     lenght = 0;
-//     int     height = 0;
+int    parse_inf(char *line, t_map *map)
+{
+    int     i;
+    int     j;
 
-//     i = 0;
-//     while (line[i] && line[i] != '\n')
-//     {
-//         if (line[i] == '')
-//     }
-// }
+    i = 0;
+    j = 0;
+    while (line[i] && line[i] >= '0' && line[i] <= '9')
+        i++;
+    if (line[i] == '\0')
+    {
+        printf("Error: info line error");
+        return 0;
+    }
+    else if (line[i] == ' ')
+    {
+        i++;
+        while (line[i])
+        {
+            if (line[i] >= 33 && line[i] <= 126)
+            {
+                if (j == 0)
+                {
+                    map->empty = line[i];
+                    j++;
+                }
+                else if (j == 1)
+                {
+                    map->obstacle = line[i];
+                    j++;
+                }
+                else if (j == 2)
+                    map->full = line[i];
+            }
+            i++;
+        }
+        if (!map->empty || !map->full|| !map->obstacle)
+        {
+            printf("Error: first line parameters");
+            return 0;
+        }
+    }
+    return 1;
+}
+
+void    detect_square(t_map *map)
+{
+    int     x1 = 0;
+    int     x2 = 0;
+    int     length;
+    int     y1 = 0;
+    int     y2 = 0;
+    int     height;
+    int     i;
+    int     j;
+
+    i = 0;
+    while (map->tab[i])
+    {
+        while (map->tab[i][j])
+        {
+            // trouver le plus grand carre possible
+        }
+    }
+
+    return;
+}

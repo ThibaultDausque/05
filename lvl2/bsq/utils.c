@@ -5,11 +5,12 @@ int ft_atoi(char *line)
     int    i;
     int    result;
 
+    result = 10;
     i = 0;
     while (line[i] && line[i] >= '0' && line[i] <= '9')
     {
-        result = line[i] - '0';
         result *= 10;
+        result = line[i] - '0';
         i++;
     }
     return result;
@@ -34,7 +35,7 @@ char*   ft_strcat(char *line, int start, int end)
 
     len = end - start;
 
-    result = (char *)malloc(len * sizeof(char));
+    result = (char *)malloc((len + 1) * sizeof(char));
     if (!result)
         return NULL;
     i = 0;
@@ -46,4 +47,23 @@ char*   ft_strcat(char *line, int start, int end)
     }
     result[i] = '\0';
     return result;
+}
+
+char*   ft_strcpy(char *line)
+{
+    int     len;
+    char*   cpy;
+    int     i = 0;
+
+    len = ft_strlen(line);
+    cpy = (char *)malloc((len + 1) * sizeof(char));
+    if (!cpy)
+        return NULL;
+    while (i < len)
+    {
+        cpy[i] = line[i];
+        i++;
+    }
+    cpy[i] = '\0';
+    return cpy;
 }
