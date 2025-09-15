@@ -33,7 +33,7 @@ char*   ft_strcat(char *line, int start, int end)
 
 
     len = end - start;
-
+    printf("length: %d\n", len);
     result = (char *)malloc(len * sizeof(char));
     if (!result)
         return NULL;

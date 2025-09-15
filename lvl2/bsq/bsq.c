@@ -21,7 +21,7 @@ void    ftread_map(char *av)
         printf("--> %s", line);
         if (i == 0)
         {
-            printf("nb of lines: %s\n", nb_of_line(line));
+            printf("nb of lines: %s\n", nb_of_lines(line));
         }
         // else
         //     detect_square(line);
@@ -32,7 +32,7 @@ void    ftread_map(char *av)
     return ;
 }
 
-char*    nb_of_line(char *line)
+char*    nb_of_lines(char *line)
 {
     int     i;
 
@@ -41,19 +41,19 @@ char*    nb_of_line(char *line)
     {
         if (line[i] >= '0' && line[i] <= '9')
         {
-            int     len = 0;
-            char    *tmp = line;
+            int     len = i;
             char    *result;
-            while (tmp[i] && tmp[i] >= '0' && tmp[i] <= '9')
+            while (line[i] >= '0' && line[i] <= '9')
             {
                 len++;
                 i++;
             }
-            if (tmp[i] == '\0')
+            if (line[i] == '\0')
                 return NULL;
             result = ft_strcat(line, i, len);
             return result;
         }
+        i++;
     }
     return NULL;
 }

@@ -16,11 +16,11 @@ int	main(void)
 		std::cout << "a + b = " << a + b << std::endl; // a + b = 63
 		std::cout << "(c += a) = " << (c += a) << std::endl; // c = 42, donc (c += a) = 42
 		
-		std::cout << "\n\n" << std::endl;
-		std::cout << "b = " << b << std::endl;
-		std::cout << "++b = " << ++b << std::endl;
-		std::cout << "b++ = " << b++ << std::endl;
-		std::cout << "b = " << b << std::endl;
+		// std::cout << "\n\n" << std::endl;
+		// std::cout << "b = " << b << std::endl;
+		// std::cout << "++b = " << ++b << std::endl;
+		// std::cout << "b++ = " << b++ << std::endl;
+		// std::cout << "b = " << b << std::endl;
 		// int	i = 0;//checking**
 		// std::cout << "i = " << i << std::endl;
 		// std::cout << "++i = " << ++i << std::endl;

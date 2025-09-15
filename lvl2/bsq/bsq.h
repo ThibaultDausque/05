@@ -14,7 +14,7 @@ typedef struct s_map
 
 // BSQ
 void    ftread_map(char *av);
-char*   nb_of_line(char *line);
+char*    nb_of_lines(char *line);
 
 // UTILS
 char*   ft_strcat(char *line, int start, int end);
