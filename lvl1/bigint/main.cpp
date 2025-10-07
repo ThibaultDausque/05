@@ -5,7 +5,7 @@ int	main(void)
 {
 	{
 		const bigint	a(42);
-		bigint			b(1), c, d(1337), e(d);
+		bigint			b(60), c, d(1337), e(d);
 		
 		//All are in base10
 		std::cout << a << std::endl;
@@ -16,16 +16,16 @@ int	main(void)
 		std::cout << "a + b = " << a + b << std::endl; // a + b = 63
 		std::cout << "(c += a) = " << (c += a) << std::endl; // c = 42, donc (c += a) = 42
 		
-		// std::cout << "\n\n" << std::endl;
-		// std::cout << "b = " << b << std::endl;
-		// std::cout << "++b = " << ++b << std::endl;
-		// std::cout << "b++ = " << b++ << std::endl;
-		// std::cout << "b = " << b << std::endl;
-		// int	i = 0;//checking**
-		// std::cout << "i = " << i << std::endl;
-		// std::cout << "++i = " << ++i << std::endl;
-		// std::cout << "i++ = " << i++ << std::endl;
-		// std::cout << "i = " << i << std::endl;
+		std::cout << "\n\n" << std::endl;
+		std::cout << "b = " << b << std::endl;
+		std::cout << "++b = " << ++b << std::endl;
+		std::cout << "b++ = " << b++ << std::endl;
+		std::cout << "b = " << b << std::endl;
+		int	i = 0;//checking**
+		std::cout << "i = " << i << std::endl;
+		std::cout << "++i = " << ++i << std::endl;
+		std::cout << "i++ = " << i++ << std::endl;
+		std::cout << "i = " << i << std::endl;
 
 		// std::cout << "\n\n" << std::endl;
 		// std::cout << "\"((b << 10) + 42)\" = " << ((b << 10) + 42) << std::endl;
