@@ -1,12 +1,12 @@
 #include "bsq.h"
 
-int main(int ac, char **av)
+int	main(void)
 {
-    if (ac != 2)
-    {
-        printf("Faut un fichier mon reuf\n");
-        return 0;
-    }
-    ftread_map(av[1]);
-    return 0;
+	char	*line;
+	size_t	len = 0;
+	
+
+	while (getline(&line, &len, stdin) != -1)
+		fprintf(stdout, "%s", line);
+	return 0;
 }
