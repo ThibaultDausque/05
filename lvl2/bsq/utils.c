@@ -27,8 +27,9 @@ char*	ft_substr(char *line, int start, int end)
 	if (!result)
 		return 0;
 	i = 0;
-	while (start < end)
+	while (start <= end)
 		result[i++] = line[start++];
 	result[i] = '\0';
 	return result;
 }
+
