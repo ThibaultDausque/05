@@ -20,6 +20,10 @@ board and print the result in stdout (each cell alive will be represented l
 the character '0' and each dead cell will be represented by a space)
 each cell outside of the array will be considered dead.
 
+
+Une cellule morte possédant exactement trois cellules voisines vivantes devient vivante (elle naît) ;
+Une cellule vivante ne possédant pas exactement deux ou trois cellules voisines vivantes meurt.
+
 Examples:
 
 $> echo 'sdxddssaaww' | ./a.out 5 5 0 | cat -e
