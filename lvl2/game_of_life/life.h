@@ -8,6 +8,6 @@
 int		life(int width, int height, int it);
 char**	fil_map(int width, int height);
 void	display_map(char **map);
-int		life_it(char **map, int it);
+int		life_it(char **map, int it, int width, int height);
 
 #endif
