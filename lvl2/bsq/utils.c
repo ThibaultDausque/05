@@ -16,7 +16,7 @@ int	ft_atoi(char *line)
 	return result;
 }
 
-char*	ft_substr(char *line, int start, int end)
+char*	ft_substr(int start, int end, char *line)
 {
 	int		i;
 	int		len;
